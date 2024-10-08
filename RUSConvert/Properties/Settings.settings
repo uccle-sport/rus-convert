@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RUSConvert.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="InvoicesSourceFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
+    </Setting>
+    <Setting Name="InvoicesDestFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
+    </Setting>
+    <Setting Name="PaymentsSourceFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
+    </Setting>
+    <Setting Name="PaymentsDestFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
+    </Setting>
+    <Setting Name="CompanyName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Royal Uccle Sport</Value>
+    </Setting>
+    <Setting Name="CompanyIBAN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BE70210058032425</Value>
+    </Setting>
+    <Setting Name="CompanyVAT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CompanyVAT</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
