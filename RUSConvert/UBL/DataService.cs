@@ -1,7 +1,6 @@
 ﻿using ExcelDataReader;
 using RUSConvert.Models;
 using System.Data;
-using static RUSConvert.UBL.AccountService;
 
 namespace RUSConvert.UBL
 {
