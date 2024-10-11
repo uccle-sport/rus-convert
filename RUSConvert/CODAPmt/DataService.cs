@@ -36,9 +36,18 @@ namespace RUSConvert.CODAPmt
             {
                 List<PaymentSource> sourceLines = [.. lines.AsEnumerable().Select(l => new PaymentSource()
                 {
-                    Nom = l.Field<string>("Nom"),
-                    Numéro_de_compte = l.Field<string>("Numéro de compte"),
-                    Montant = (decimal)l.Field<double>("Montant"),
+                    TwizzitId  = (decimal?)l.Field<double?>("Twizzit ID"),
+                    Name = l.Field<string>("Nom"),
+                    BirthDate =  DateOnly.ParseExact(l.Field<string>("Date de naissance") ?? DateOnly.FromDateTime(DateTime.Now).ToString(), "dd/MM/yyyy"),
+                    IBAN = l.Field<string>("Numéro de compte"),
+                    From =  DateTime.ParseExact(l.Field<string>("Heure de début") ?? DateTime.Now.ToString(), "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
+                    To =  DateTime.ParseExact(l.Field<string>("Heure de fin") ?? DateTime.Now.ToString(), "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
+                    Type = l.Field<string>("Type d'enregistrement"),
+                    Title = l.Field<string>("Titre"),
+                    Task = l.Field<string>("Tâche / fonction exécutée"),
+                    Distance =  (decimal?)l.Field<double?>("Distance"),
+                    Amount = (decimal)l.Field<double>("Montant"),
+                    RegistrationDate =  DateOnly.ParseExact(l.Field<string>("Enregistré le") ?? DateOnly.FromDateTime(DateTime.Now).ToString(), "dd/MM/yyyy"),
                 })];
                 return Result<List<PaymentSource>>.Success(sourceLines);
             }

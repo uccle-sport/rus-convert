@@ -10,6 +10,7 @@ namespace RUSConvert
         public FormRUSConvert()
         {
             InitializeComponent();
+            textBoxCommunication.Text = Properties.Settings.Default.DefaultCommunication;
         }
 
         private void ButtonLoadInvoices_Click(object sender, EventArgs e)
@@ -41,8 +42,11 @@ namespace RUSConvert
 
         private void ButtonConvertPayments_Click(object sender, EventArgs e)
         {
-            var result = Twizzit2CODAPmt.Convert(labelPayments.Text, DateTimeEnvelop.Value.Date, textBoxCommunication.Text);
-            labelStatusPayments.Text = result.Messages[0];
+            if (labelPayments.Text.Length > 0)
+            {
+                var result = Twizzit2CODAPmt.Convert(labelPayments.Text, DateTimeEnvelop.Value.Date, textBoxCommunication.Text);
+                labelStatusPayments.Text = result.Messages[0];
+            }
         }
 
         private void FormRUSConvert_Resize(object sender, EventArgs e)

@@ -15,12 +15,13 @@ namespace RUSConvert.CODAPmt
 
             var payments =
                 from sourceline in sourceLines.Data
-                group sourceline by sourceline.Numéro_de_compte into h
+                group sourceline by sourceline.TwizzitId into h
                 select new PaymentLine
                 {
-                    Name = h.First().Nom ?? "",
-                    IBAN = h.First().Numéro_de_compte ?? "",
-                    Amount = h.Sum(l => l.Montant),
+                    TwizzitId = h.First().TwizzitId,
+                    Name = h.First().Name ?? "",
+                    IBAN = h.First().IBAN ?? "",
+                    Amount = h.Sum(l => l.Amount),
                 };
 
             int count = 0;
@@ -28,8 +29,8 @@ namespace RUSConvert.CODAPmt
             string pmtDate = date.AddDays(0).ToString("yyyy-MM-dd");
             string envelopRef = "UCCL/" + envelopDate;
 
+            // XML
             XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
-
             var xmlPayments = new XDocument(
                  new XElement(xsi + "Document",
                         new XAttribute("xmlns", "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"),
@@ -108,15 +109,14 @@ namespace RUSConvert.CODAPmt
                             )
                         )
                     );
-
-            foreach (PaymentLine line in payments)
-            {
-                count++;
-                // Add to file
-            }
             string fileNameCODA = Path.Combine(Properties.Settings.Default.PaymentsDestFolder, DateTime.Now.ToString("yyyy-MM-dd-hhmm") + ".xml");
             xmlPayments.Save(fileNameCODA);
-            return Result<List<PaymentSource>>.Success($"{count} fichiers traités");
+
+            // PDF
+            var document = new RegistrationReport();
+            document.CreateDocuments(sourceLines.Data, pmtDate);
+
+            return Result<List<PaymentSource>>.Success($"{payments.Count()} fichiers traités");
         }
     }
 }

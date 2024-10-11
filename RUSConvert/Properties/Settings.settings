@@ -21,7 +21,10 @@
       <Value Profile="(Default)">BE70210058032425</Value>
     </Setting>
     <Setting Name="CompanyVAT" Type="System.String" Scope="User">
-      <Value Profile="(Default)">CompanyVAT</Value>
+      <Value Profile="(Default)">BE0411104311</Value>
+    </Setting>
+    <Setting Name="DefaultCommunication" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PRESTATION HOCKEY</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -145,7 +145,7 @@
             // DateTimeEnvelop
             // 
             DateTimeEnvelop.Format = DateTimePickerFormat.Short;
-            DateTimeEnvelop.Location = new Point(220, 37);
+            DateTimeEnvelop.Location = new Point(236, 15);
             DateTimeEnvelop.Name = "DateTimeEnvelop";
             DateTimeEnvelop.Size = new Size(97, 23);
             DateTimeEnvelop.TabIndex = 56;
@@ -153,7 +153,7 @@
             // labelCommunication
             // 
             labelCommunication.AutoSize = true;
-            labelCommunication.Location = new Point(334, 42);
+            labelCommunication.Location = new Point(350, 20);
             labelCommunication.Name = "labelCommunication";
             labelCommunication.Size = new Size(94, 15);
             labelCommunication.TabIndex = 54;
@@ -161,11 +161,10 @@
             // 
             // textBoxCommunication
             // 
-            textBoxCommunication.Location = new Point(434, 37);
+            textBoxCommunication.Location = new Point(450, 15);
             textBoxCommunication.Name = "textBoxCommunication";
             textBoxCommunication.Size = new Size(231, 23);
             textBoxCommunication.TabIndex = 53;
-            textBoxCommunication.Text = "BENEVOLAT ";
             // 
             // labelStatusPayments
             // 
@@ -178,7 +177,7 @@
             // labelPayments
             // 
             labelPayments.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPayments.Location = new Point(220, 17);
+            labelPayments.Location = new Point(236, 41);
             labelPayments.Name = "labelPayments";
             labelPayments.Size = new Size(445, 19);
             labelPayments.TabIndex = 51;

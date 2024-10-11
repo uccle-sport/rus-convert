@@ -97,13 +97,25 @@ namespace RUSConvert.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CompanyVAT")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BE0411104311")]
         public string CompanyVAT {
             get {
                 return ((string)(this["CompanyVAT"]));
             }
             set {
                 this["CompanyVAT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PRESTATION HOCKEY")]
+        public string DefaultCommunication {
+            get {
+                return ((string)(this["DefaultCommunication"]));
+            }
+            set {
+                this["DefaultCommunication"] = value;
             }
         }
     }
