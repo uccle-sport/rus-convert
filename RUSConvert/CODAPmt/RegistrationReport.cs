@@ -119,7 +119,7 @@ namespace RUSConvert.CODAPmt
                     {
                         table.Cell().Element(CellStyle).AlignLeft().Text($"{item.From:d}");
                         table.Cell().Element(CellStyle).AlignLeft().Text(item.Title);
-                        table.Cell().Element(CellStyle).AlignRight().Text($"{item.Duration}h");
+                        table.Cell().Element(CellStyle).AlignRight().Text($"{item.Duration}");
                         table.Cell().Element(CellStyle).AlignRight().Text($"{item.Amount}€");
 
                         static IContainer CellStyle(IContainer container)

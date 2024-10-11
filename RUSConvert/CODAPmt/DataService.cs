@@ -46,6 +46,7 @@ namespace RUSConvert.CODAPmt
                     Title = l.Field<string>("Titre"),
                     Task = l.Field<string>("Tâche / fonction exécutée"),
                     Distance =  (decimal?)l.Field<double?>("Distance"),
+                    Duration = l.Field<string>("Durée"),
                     Amount = (decimal)l.Field<double>("Montant"),
                     RegistrationDate =  DateOnly.ParseExact(l.Field<string>("Enregistré le") ?? DateOnly.FromDateTime(DateTime.Now).ToString(), "dd/MM/yyyy"),
                 })];
