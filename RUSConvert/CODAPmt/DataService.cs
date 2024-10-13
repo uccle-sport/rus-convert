@@ -34,7 +34,7 @@ namespace RUSConvert.CODAPmt
             }
             else
             {
-                List<PaymentSource> sourceLines = [.. lines.AsEnumerable().Select(l => new PaymentSource()
+                List<PaymentSource> sourceLines = [.. lines.AsEnumerable().Where(l => l.Field<string>("Nom") != null).Select(l => new PaymentSource()
                 {
                     TwizzitId  = (decimal?)l.Field<double?>("Twizzit ID"),
                     Name = l.Field<string>("Nom"),
