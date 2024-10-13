@@ -97,7 +97,7 @@ namespace RUSConvert.CODAPmt
                     table.ColumnsDefinition(columns =>
                     {
                         columns.RelativeColumn(1);
-                        columns.RelativeColumn();
+                        columns.RelativeColumn(5);
                         columns.RelativeColumn(1);
                         columns.RelativeColumn(1);
                     });
