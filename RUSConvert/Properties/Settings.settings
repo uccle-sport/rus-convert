@@ -2,18 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RUSConvert.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="InvoicesSourceFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
-    </Setting>
-    <Setting Name="InvoicesDestFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
-    </Setting>
-    <Setting Name="PaymentsSourceFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
-    </Setting>
-    <Setting Name="PaymentsDestFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">P:\Documents RUS\REPO</Value>
-    </Setting>
     <Setting Name="CompanyName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Royal Uccle Sport</Value>
     </Setting>
@@ -25,6 +13,18 @@
     </Setting>
     <Setting Name="DefaultCommunication" Type="System.String" Scope="User">
       <Value Profile="(Default)">PRESTATION HOCKEY</Value>
+    </Setting>
+    <Setting Name="InvoicesSourceFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">R:\REPO\Source</Value>
+    </Setting>
+    <Setting Name="InvoicesDestFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">R:\REPO\Dest</Value>
+    </Setting>
+    <Setting Name="PaymentsSourceFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">R:\REPO\Source</Value>
+    </Setting>
+    <Setting Name="PaymentsDestFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">R:\REPO\Dest</Value>
     </Setting>
   </Settings>
 </SettingsFile>

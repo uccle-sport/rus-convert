@@ -25,54 +25,6 @@ namespace RUSConvert.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("P:\\Documents RUS\\REPO")]
-        public string InvoicesSourceFolder {
-            get {
-                return ((string)(this["InvoicesSourceFolder"]));
-            }
-            set {
-                this["InvoicesSourceFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("P:\\Documents RUS\\REPO")]
-        public string InvoicesDestFolder {
-            get {
-                return ((string)(this["InvoicesDestFolder"]));
-            }
-            set {
-                this["InvoicesDestFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("P:\\Documents RUS\\REPO")]
-        public string PaymentsSourceFolder {
-            get {
-                return ((string)(this["PaymentsSourceFolder"]));
-            }
-            set {
-                this["PaymentsSourceFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("P:\\Documents RUS\\REPO")]
-        public string PaymentsDestFolder {
-            get {
-                return ((string)(this["PaymentsDestFolder"]));
-            }
-            set {
-                this["PaymentsDestFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Royal Uccle Sport")]
         public string CompanyName {
             get {
@@ -116,6 +68,54 @@ namespace RUSConvert.Properties {
             }
             set {
                 this["DefaultCommunication"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Source")]
+        public string InvoicesSourceFolder {
+            get {
+                return ((string)(this["InvoicesSourceFolder"]));
+            }
+            set {
+                this["InvoicesSourceFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Dest")]
+        public string InvoicesDestFolder {
+            get {
+                return ((string)(this["InvoicesDestFolder"]));
+            }
+            set {
+                this["InvoicesDestFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Source")]
+        public string PaymentsSourceFolder {
+            get {
+                return ((string)(this["PaymentsSourceFolder"]));
+            }
+            set {
+                this["PaymentsSourceFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Dest")]
+        public string PaymentsDestFolder {
+            get {
+                return ((string)(this["PaymentsDestFolder"]));
+            }
+            set {
+                this["PaymentsDestFolder"] = value;
             }
         }
     }
