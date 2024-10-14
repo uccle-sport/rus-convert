@@ -40,7 +40,7 @@ namespace RUSConvert.CODAPmt
             // XML
             var xmlPayments = Pain_001_001_03.GetXML(envelopRef, envelopDate, pmtDate, communication, payments);
             Directory.CreateDirectory(Properties.Settings.Default.PaymentsDestFolder);
-            string fileNameCODA = Path.Combine(Properties.Settings.Default.PaymentsDestFolder, DateTime.Now.ToString("yyyy-MM-dd-hhmm") + ".xml");
+            string fileNameCODA = Path.Combine(Properties.Settings.Default.PaymentsDestFolder, DateTime.Now.ToString("yyyy-MM-dd-HHmm") + ".xml");
             xmlPayments.Save(fileNameCODA);
 
             // PDF
