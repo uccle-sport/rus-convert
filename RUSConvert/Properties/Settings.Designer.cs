@@ -118,5 +118,17 @@ namespace RUSConvert.Properties {
                 this["PaymentsDestFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GEBABEBB")]
+        public string CompanyBIC {
+            get {
+                return ((string)(this["CompanyBIC"]));
+            }
+            set {
+                this["CompanyBIC"] = value;
+            }
+        }
     }
 }

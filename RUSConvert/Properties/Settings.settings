@@ -26,5 +26,8 @@
     <Setting Name="PaymentsDestFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">R:\REPO\Dest</Value>
     </Setting>
+    <Setting Name="CompanyBIC" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GEBABEBB</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
