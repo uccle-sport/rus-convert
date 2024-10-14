@@ -105,11 +105,6 @@ namespace RUSConvert.UBL
                 {
                     //Ignorer, factures déjà en compta, cas des paiements partiels
                 }
-                else if (File.Exists(fileNameUBL))
-                {
-                    // On arrête car on n'est pas censé recréer des fichiers existants
-                    return Result<List<InvoiceSource>>.Fail("ATTENTION: vous traitez des fichiers déjà importés, conversion impossible");
-                }
                 else
                 {
                     xmlInvoice.Save(fileNameUBL);

@@ -27,6 +27,7 @@ namespace RUSConvert.CODAPmt
             {
                 report.IssueDate = DateTime.Now;
                 var document = CreateDocument(report);
+                Directory.CreateDirectory(Properties.Settings.Default.PaymentsDestFolder);
                 document.GeneratePdf(Path.Combine(Properties.Settings.Default.PaymentsDestFolder, report.Name + " PRESTATIONS " + FileName + ".pdf"));
             }
         }
