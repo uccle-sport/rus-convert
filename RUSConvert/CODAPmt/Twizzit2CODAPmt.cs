@@ -13,8 +13,18 @@ namespace RUSConvert.CODAPmt
                 return Result<List<PaymentSource>>.Fail(sourceLines.Messages);
             }
 
+            var countMissingIBAN =
+                (from sourceline in sourceLines.Data
+                 where sourceline.IBAN is null
+                 select sourceline).Count();
+            if (countMissingIBAN > 0)
+            {
+                return Result<List<PaymentSource>>.Fail($"{countMissingIBAN} IBAN manquants, conversion annulée");
+            }
+
             var payments =
                 from sourceline in sourceLines.Data
+                where !sourceline.IBAN?.StartsWith("COMPENSATION") ?? false
                 group sourceline by sourceline.TwizzitId into h
                 select new PaymentLine
                 {
