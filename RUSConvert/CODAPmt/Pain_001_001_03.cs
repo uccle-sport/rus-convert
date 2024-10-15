@@ -10,67 +10,67 @@ namespace RUSConvert.CODAPmt
 
             // XML
             XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+            XNamespace ns = "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03";
             var xmlPayments = new XDocument(
-                 new XElement(xsi + "Document",
-                        new XAttribute("xmlns", "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"),
+                 new XElement(ns + "Document",
                         new XAttribute(XNamespace.Xmlns + "xsi", xsi.ToString()),
-                    new XElement("CstmrCdtTrfInitn",
-                        new XElement("GrpHdr",
-                            new XElement("MsgId", envelopRef),
-                            new XElement("CreDtTm", envelopDate),
-                            new XElement("NbOfTxs", payments.Count().ToString()),
-                            new XElement("InitgPty",
-                                new XElement("Nm", Properties.Settings.Default.CompanyName),
-                                new XElement("Id",
-                                    new XElement("OrgId",
-                                        new XElement("Othr",
-                                            new XElement("Id", Properties.Settings.Default.CompanyVAT),
-                                            new XElement("Issr", "KBO-BCE")
+                    new XElement(ns + "CstmrCdtTrfInitn",
+                        new XElement(ns + "GrpHdr",
+                            new XElement(ns + "MsgId", envelopRef),
+                            new XElement(ns + "CreDtTm", envelopDate),
+                            new XElement(ns + "NbOfTxs", payments.Count().ToString()),
+                            new XElement(ns + "InitgPty",
+                                new XElement(ns + "Nm", Properties.Settings.Default.CompanyName),
+                                new XElement(ns + "Id",
+                                    new XElement(ns + "OrgId",
+                                        new XElement(ns + "Othr",
+                                            new XElement(ns + "Id", Properties.Settings.Default.CompanyVAT),
+                                            new XElement(ns + "Issr", "KBO-BCE")
                                             )
                                         )
                                     )
                                 )
                             ),
-                            new XElement("PmtInf",
-                                new XElement("PmtInfId", envelopRef + "/" + count.ToString("000")),
-                                new XElement("PmtMtd", "TRF"),
-                                new XElement("PmtTpInf",
-                                    new XElement("SvcLvl",
-                                        new XElement("Cd", "SEPA")
+                            new XElement(ns + "PmtInf",
+                                new XElement(ns + "PmtInfId", envelopRef + "/" + count.ToString("000")),
+                                new XElement(ns + "PmtMtd", "TRF"),
+                                new XElement(ns + "PmtTpInf",
+                                    new XElement(ns + "SvcLvl",
+                                        new XElement(ns + "Cd","SEPA")
                                         )
                                     ),
-                                new XElement("ReqdExctnDt", pmtDate),
-                                new XElement("Dbtr",
-                                    new XElement("Nm", Properties.Settings.Default.CompanyName)
+                                new XElement(ns + "ReqdExctnDt", pmtDate),
+                                new XElement(ns + "Dbtr",
+                                    new XElement(ns + "Nm", Properties.Settings.Default.CompanyName)
                                         ),
-                                new XElement("DbtrAcct",
-                                    new XElement("Id",
-                                        new XElement("IBAN", Properties.Settings.Default.CompanyIBAN)
+                                new XElement(ns + "DbtrAcct",
+                                    new XElement(ns + "Id",
+                                        new XElement(ns + "IBAN", Properties.Settings.Default.CompanyIBAN)
                                             )
                                         ),
-                                new XElement("DbtrAgt",
-                                    new XElement("FinInstnId",
-                                        new XElement("BIC", Properties.Settings.Default.CompanyBIC)
+                                new XElement(ns + "DbtrAgt",
+                                    new XElement(ns + "FinInstnId",
+                                        new XElement(ns + "BIC", Properties.Settings.Default.CompanyBIC)
                                             )
                                         ),
                                 from pmt in payments
-                                select new XElement("CdtTrfTxInf",
-                                            new XElement("PmtId",
-                                                new XElement("EndToEndId", envelopRef + "/" + count.ToString("000"))
+                                select new XElement(ns + "CdtTrfTxInf",
+                                            new XElement(ns + "PmtId",
+                                                new XElement(ns + "EndToEndId", envelopRef + "/" + pmt.TwizzitId.ToString())
                                                 ),
-                                            new XElement("Amt",
-                                                new XElement("InstdAmt", new XAttribute("Ccy", "EUR"), pmt.Amount)
+                                            new XElement(ns + "Amt",
+                                                new XElement(ns + "InstdAmt", new XAttribute("Ccy", "EUR"), pmt.Amount)
                                                 ),
-                                            new XElement("Cdtr",
-                                                new XElement("Nm", pmt.Name)
+                                            new XElement(ns + "Cdtr",
+                                                new XElement(ns + "Nm", pmt.Name)
                                                 ),
-                                            new XElement("CdtrAcct",
-                                                new XElement("Id",
-                                                    new XElement("IBAN", pmt.IBAN)
+                                            new XElement(ns + "CdtrAcct",
+                                                new XElement(ns + "Id",
+                                                    new XElement(ns + "IBAN", pmt.IBAN)
                                                     )
                                                 ),
-                                            new XElement("RmtInf",
-                                                new XElement("Ustrd", communication)
+                                            new XElement(ns + "RmtInf",
+                                                new XElement(ns + "Ustrd", communication)
                                                 )
                                     )
                                 )
