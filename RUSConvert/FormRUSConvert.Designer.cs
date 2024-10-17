@@ -34,11 +34,13 @@
             openFileDialog = new OpenFileDialog();
             tabControl = new TabControl();
             tabPageUBL = new TabPage();
+            progressBarUBL = new ProgressBar();
             labelStatusInvoices = new Label();
             labelInvoices = new Label();
             ButtonLoadInvoices = new Button();
             ButtonConvertInvoices = new Button();
             tabPageCODA = new TabPage();
+            progressBarCODA = new ProgressBar();
             DateTimeEnvelop = new DateTimePicker();
             labelCommunication = new Label();
             textBoxCommunication = new TextBox();
@@ -72,11 +74,12 @@
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(726, 129);
+            tabControl.Size = new Size(704, 170);
             tabControl.TabIndex = 45;
             // 
             // tabPageUBL
             // 
+            tabPageUBL.Controls.Add(progressBarUBL);
             tabPageUBL.Controls.Add(labelStatusInvoices);
             tabPageUBL.Controls.Add(labelInvoices);
             tabPageUBL.Controls.Add(ButtonLoadInvoices);
@@ -84,30 +87,37 @@
             tabPageUBL.Location = new Point(4, 24);
             tabPageUBL.Name = "tabPageUBL";
             tabPageUBL.Padding = new Padding(3);
-            tabPageUBL.Size = new Size(718, 101);
+            tabPageUBL.Size = new Size(696, 142);
             tabPageUBL.TabIndex = 0;
             tabPageUBL.Text = "UBL (Factures)";
             tabPageUBL.UseVisualStyleBackColor = true;
             // 
+            // progressBarUBL
+            // 
+            progressBarUBL.Location = new Point(12, 109);
+            progressBarUBL.Name = "progressBarUBL";
+            progressBarUBL.Size = new Size(669, 19);
+            progressBarUBL.TabIndex = 49;
+            // 
             // labelStatusInvoices
             // 
             labelStatusInvoices.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelStatusInvoices.Location = new Point(216, 41);
+            labelStatusInvoices.Location = new Point(220, 82);
             labelStatusInvoices.Name = "labelStatusInvoices";
-            labelStatusInvoices.Size = new Size(445, 19);
+            labelStatusInvoices.Size = new Size(461, 19);
             labelStatusInvoices.TabIndex = 48;
             // 
             // labelInvoices
             // 
             labelInvoices.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelInvoices.Location = new Point(216, 18);
+            labelInvoices.Location = new Point(236, 17);
             labelInvoices.Name = "labelInvoices";
             labelInvoices.Size = new Size(445, 19);
             labelInvoices.TabIndex = 47;
             // 
             // ButtonLoadInvoices
             // 
-            ButtonLoadInvoices.Location = new Point(8, 16);
+            ButtonLoadInvoices.Location = new Point(12, 15);
             ButtonLoadInvoices.Name = "ButtonLoadInvoices";
             ButtonLoadInvoices.Size = new Size(202, 23);
             ButtonLoadInvoices.TabIndex = 46;
@@ -117,7 +127,7 @@
             // 
             // ButtonConvertInvoices
             // 
-            ButtonConvertInvoices.Location = new Point(8, 41);
+            ButtonConvertInvoices.Location = new Point(12, 80);
             ButtonConvertInvoices.Name = "ButtonConvertInvoices";
             ButtonConvertInvoices.Size = new Size(202, 23);
             ButtonConvertInvoices.TabIndex = 45;
@@ -127,6 +137,7 @@
             // 
             // tabPageCODA
             // 
+            tabPageCODA.Controls.Add(progressBarCODA);
             tabPageCODA.Controls.Add(DateTimeEnvelop);
             tabPageCODA.Controls.Add(labelCommunication);
             tabPageCODA.Controls.Add(textBoxCommunication);
@@ -137,15 +148,22 @@
             tabPageCODA.Location = new Point(4, 24);
             tabPageCODA.Name = "tabPageCODA";
             tabPageCODA.Padding = new Padding(3);
-            tabPageCODA.Size = new Size(718, 101);
+            tabPageCODA.Size = new Size(696, 142);
             tabPageCODA.TabIndex = 1;
             tabPageCODA.Text = "CODA (Enveloppe)";
             tabPageCODA.UseVisualStyleBackColor = true;
             // 
+            // progressBarCODA
+            // 
+            progressBarCODA.Location = new Point(12, 109);
+            progressBarCODA.Name = "progressBarCODA";
+            progressBarCODA.Size = new Size(669, 19);
+            progressBarCODA.TabIndex = 57;
+            // 
             // DateTimeEnvelop
             // 
             DateTimeEnvelop.Format = DateTimePickerFormat.Short;
-            DateTimeEnvelop.Location = new Point(236, 15);
+            DateTimeEnvelop.Location = new Point(236, 50);
             DateTimeEnvelop.Name = "DateTimeEnvelop";
             DateTimeEnvelop.Size = new Size(97, 23);
             DateTimeEnvelop.TabIndex = 56;
@@ -153,7 +171,7 @@
             // labelCommunication
             // 
             labelCommunication.AutoSize = true;
-            labelCommunication.Location = new Point(350, 20);
+            labelCommunication.Location = new Point(350, 54);
             labelCommunication.Name = "labelCommunication";
             labelCommunication.Size = new Size(94, 15);
             labelCommunication.TabIndex = 54;
@@ -161,7 +179,7 @@
             // 
             // textBoxCommunication
             // 
-            textBoxCommunication.Location = new Point(450, 15);
+            textBoxCommunication.Location = new Point(450, 50);
             textBoxCommunication.Name = "textBoxCommunication";
             textBoxCommunication.Size = new Size(231, 23);
             textBoxCommunication.TabIndex = 53;
@@ -169,15 +187,15 @@
             // labelStatusPayments
             // 
             labelStatusPayments.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelStatusPayments.Location = new Point(236, 73);
+            labelStatusPayments.Location = new Point(220, 82);
             labelStatusPayments.Name = "labelStatusPayments";
-            labelStatusPayments.Size = new Size(445, 19);
+            labelStatusPayments.Size = new Size(461, 19);
             labelStatusPayments.TabIndex = 52;
             // 
             // labelPayments
             // 
             labelPayments.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelPayments.Location = new Point(236, 41);
+            labelPayments.Location = new Point(236, 17);
             labelPayments.Name = "labelPayments";
             labelPayments.Size = new Size(445, 19);
             labelPayments.TabIndex = 51;
@@ -194,7 +212,7 @@
             // 
             // ButtonConvertPayments
             // 
-            ButtonConvertPayments.Location = new Point(12, 69);
+            ButtonConvertPayments.Location = new Point(12, 80);
             ButtonConvertPayments.Name = "ButtonConvertPayments";
             ButtonConvertPayments.Size = new Size(202, 23);
             ButtonConvertPayments.TabIndex = 49;
@@ -206,7 +224,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(726, 129);
+            ClientSize = new Size(704, 170);
             Controls.Add(tabControl);
             Name = "FormRUSConvert";
             Text = "RUS Convert";
@@ -236,5 +254,7 @@
         private TextBox textBoxCommunication;
         private Label labelCommunication;
         private DateTimePicker DateTimeEnvelop;
+        private ProgressBar progressBarCODA;
+        private ProgressBar progressBarUBL;
     }
 }

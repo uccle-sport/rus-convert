@@ -1,13 +1,14 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using System.Data.Common;
+using RUSConvert.Shared;
 
 namespace RUSConvert.CODAPmt
 {
-    internal class RegistrationReport
+    internal class RegistrationReport(IProgress<JobProgress> progress)
     {
         byte[]? LogoRUS;
+        private readonly IProgress<JobProgress> progress = progress;
 
         public void CreateDocuments(List<PaymentSource> sourceLines, string FileName)
         {
@@ -23,12 +24,15 @@ namespace RUSConvert.CODAPmt
                     BirthDate = reportlines.First().BirthDate,
                     Lines = [.. reportlines]
                 };
+            JobProgress jobProgress = new() { Value = 0, Min = 0, Max = reports.Count(), Text = "Conversion en cours" };
             foreach (var report in reports)
             {
                 report.IssueDate = DateTime.Now;
                 var document = CreateDocument(report);
                 Directory.CreateDirectory(Properties.Settings.Default.PaymentsDestFolder);
                 document.GeneratePdf(Path.Combine(Properties.Settings.Default.PaymentsDestFolder, report.Name + " PRESTATIONS " + FileName + ".pdf"));
+                jobProgress.Value++;
+                progress.Report(jobProgress);
             }
         }
 

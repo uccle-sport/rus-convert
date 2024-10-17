@@ -5,32 +5,34 @@ using static RUSConvert.UBL.AccountService;
 
 namespace RUSConvert.UBL
 {
-    internal class Twizzit2UBL
+    internal class Twizzit2UBL(IProgress<JobProgress> progress)
     {
-        public static Result Convert(string fileNameXLSX)
+        private readonly IProgress<JobProgress> progress = progress;
+
+        public Task<IResult> Convert(string fileNameXLSX)
         {
             if (string.IsNullOrEmpty(fileNameXLSX))
             {
-                return Result<List<InvoiceSource>>.Fail($"ATTENTION: veuillez choisir un fichier, conversion impossible");
+                return Result.FailAsync($"ATTENTION: veuillez choisir un fichier, conversion impossible");
             }
             if (!File.Exists(fileNameXLSX))
             {
-                return Result<List<InvoiceSource>>.Fail("ATTENTION: ce fichier n'existe pas, conversion impossible");
+                return Result.FailAsync("ATTENTION: ce fichier n'existe pas, conversion impossible");
             }
             string archiveXLSX = Path.Combine(Path.GetDirectoryName(fileNameXLSX) ?? "", "ARCHIVES", Path.GetFileName(fileNameXLSX));
             if (File.Exists(archiveXLSX))
             {
-                return Result<List<InvoiceSource>>.Fail("ATTENTION: ce fichier a déjà été importé, conversion impossible");
+                return Result.FailAsync("ATTENTION: ce fichier a déjà été importé, conversion impossible");
             }
 
             var rulesResult = GetRules();
-            if (!rulesResult.Succeeded) return Result<List<InvoiceSource>>.Fail("ATTENTION: fichier Rules inaccessible, conversion impossible");
+            if (!rulesResult.Succeeded) return Result.FailAsync("ATTENTION: fichier Rules inaccessible, conversion impossible");
             List<AccountRules> rules = rulesResult.Data; 
 
             var sourceLines = DataService.GetData(fileNameXLSX);
             if (!sourceLines.Succeeded)
             {
-                return Result<List<InvoiceSource>>.Fail(sourceLines.Messages);
+                return Result.FailAsync(sourceLines.Messages);
             }
 
             var headers =
@@ -49,7 +51,11 @@ namespace RUSConvert.UBL
                     VCS = h.First().VCS,
                 };
 
-            int count = 0;
+            JobProgress jobProgress = new() { Value = 0, Min = 0, Max = headers.Count(), Text = "Conversion en cours" };
+            progress.Report(jobProgress);
+
+            int countOK = 0;
+            int countIgnore = 0;
             XNamespace cac = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";
             XNamespace cbc = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";
 
@@ -118,16 +124,19 @@ namespace RUSConvert.UBL
                 if (File.Exists(archiveFileNameUBL))
                 {
                     //Ignorer, facture déjà en compta, cas des paiements partiels
+                    countIgnore++;
                 }
                 else
                 {
                     xmlInvoice.Save(fileNameUBL);
-                    count++;
+                    countOK++;
                 }
+                jobProgress.Value++;
+                progress.Report(jobProgress);
             };
             Directory.CreateDirectory(Path.GetDirectoryName(archiveXLSX) ?? "");
             File.Move(fileNameXLSX, archiveXLSX);
-            return Result<List<InvoiceSource>>.Success($"{count} fichiers traités");
+            return Result.SuccessAsync($"{countOK} fichiers traités, {countIgnore} fichiers ignorés");
         }
     }
 }

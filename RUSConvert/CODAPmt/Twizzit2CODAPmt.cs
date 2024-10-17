@@ -1,15 +1,21 @@
 ﻿using RUSConvert.Models;
+using RUSConvert.Shared;
 
 namespace RUSConvert.CODAPmt
 {
-    internal class Twizzit2CODAPmt
+    internal class Twizzit2CODAPmt(IProgress<JobProgress> progress)
     {
-        public static Result Convert(string fileName, DateTime date, string communication)
+        private readonly IProgress<JobProgress> progress = progress;
+        public Task<IResult> Convert(string fileName, DateTime date, string communication)
         {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return Result.FailAsync($"ATTENTION: veuillez choisir un fichier, conversion impossible");
+            }
             var sourceLines = DataService.GetData(fileName);
             if (!sourceLines.Succeeded)
             {
-                return Result<List<PaymentSource>>.Fail(sourceLines.Messages);
+                return Result.FailAsync(sourceLines.Messages);
             }
 
             var countMissingIBAN =
@@ -18,7 +24,7 @@ namespace RUSConvert.CODAPmt
                  select sourceline).Count();
             if (countMissingIBAN > 0)
             {
-                return Result<List<PaymentSource>>.Fail($"{countMissingIBAN} IBAN manquants, conversion annulée");
+                return Result.FailAsync($"{countMissingIBAN} IBAN manquants, conversion annulée");
             }
 
             var payments =
@@ -44,10 +50,10 @@ namespace RUSConvert.CODAPmt
             xmlPayments.Save(fileNameCODA);
 
             // PDF
-            var document = new RegistrationReport();
+            var document = new RegistrationReport(progress);
             document.CreateDocuments(sourceLines.Data, pmtDate);
 
-            return Result<List<PaymentSource>>.Success($"{payments.Count()} fichiers traités");
+            return Result.SuccessAsync($"{payments.Count()} fichiers traités");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RUSConvert.CODAPmt;
+using RUSConvert.Shared;
 using RUSConvert.UBL;
 using System.Configuration;
 
@@ -23,12 +24,10 @@ namespace RUSConvert
             }
         }
 
-        private void ButtonConvertInvoices_Click(object sender, EventArgs e)
+        private async void ButtonConvertInvoices_Click(object sender, EventArgs e)
         {
-            var result = Twizzit2UBL.Convert(labelInvoices.Text);
-            labelStatusInvoices.Text = result.Messages[0];
+            await RunTwizzit2UBL();
         }
-
 
         private void ButtonLoadPayments_Click(object sender, EventArgs e)
         {
@@ -40,13 +39,45 @@ namespace RUSConvert
             }
         }
 
-        private void ButtonConvertPayments_Click(object sender, EventArgs e)
+        private async void ButtonConvertPayments_Click(object sender, EventArgs e)
         {
-            if (labelPayments.Text.Length > 0)
+            await RunTwizzit2CODAPmt();
+        }
+
+        private async Task RunTwizzit2UBL()
+        {
+            var progress = new Progress<JobProgress>();
+            progress.ProgressChanged += (s, message) =>
             {
-                var result = Twizzit2CODAPmt.Convert(labelPayments.Text, DateTimeEnvelop.Value.Date, textBoxCommunication.Text);
-                labelStatusPayments.Text = result.Messages[0];
-            }
+                if (!progressBarUBL.Visible) progressBarUBL.Show();
+                if (progressBarUBL.Maximum != message.Max)
+                {
+                    progressBarUBL.Maximum = message.Max;
+                }
+                progressBarUBL.Value = message.Value;
+                labelStatusInvoices.Text = message.Text;
+            };
+            var job = new Twizzit2UBL(progress);
+            var result = await Task.Run(() => job.Convert(labelInvoices.Text));
+            labelStatusInvoices.Text = result.Messages[0] ?? "";
+        }
+
+        private async Task RunTwizzit2CODAPmt()
+        {
+            var progress = new Progress<JobProgress>();
+            progress.ProgressChanged += (s, message) =>
+            {
+                if (!progressBarCODA.Visible) progressBarCODA.Show();
+                if (progressBarCODA.Maximum != message.Max)
+                {
+                    progressBarCODA.Maximum = message.Max;
+                }
+                progressBarCODA.Value = message.Value;
+                labelStatusPayments.Text = message.Text;
+            };
+            var job = new Twizzit2CODAPmt(progress);
+            var result = await Task.Run(() => job.Convert(labelPayments.Text, DateTimeEnvelop.Value.Date, textBoxCommunication.Text));
+            labelStatusPayments.Text = result.Messages[0] ?? "";
         }
 
         private void FormRUSConvert_Resize(object sender, EventArgs e)
