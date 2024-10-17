@@ -7,13 +7,27 @@ namespace RUSConvert.UBL
 {
     internal class Twizzit2UBL
     {
-        public static Result Convert(string fileName)
+        public static Result Convert(string fileNameXLSX)
         {
+            if (string.IsNullOrEmpty(fileNameXLSX))
+            {
+                return Result<List<InvoiceSource>>.Fail($"ATTENTION: veuillez choisir un fichier, conversion impossible");
+            }
+            if (!File.Exists(fileNameXLSX))
+            {
+                return Result<List<InvoiceSource>>.Fail("ATTENTION: ce fichier n'existe pas, conversion impossible");
+            }
+            string archiveXLSX = Path.Combine(Path.GetDirectoryName(fileNameXLSX) ?? "", "ARCHIVES", Path.GetFileName(fileNameXLSX));
+            if (File.Exists(archiveXLSX))
+            {
+                return Result<List<InvoiceSource>>.Fail("ATTENTION: ce fichier a déjà été importé, conversion impossible");
+            }
+
             var rulesResult = GetRules();
             if (!rulesResult.Succeeded) return Result<List<InvoiceSource>>.Fail("ATTENTION: fichier Rules inaccessible, conversion impossible");
             List<AccountRules> rules = rulesResult.Data; 
 
-            var sourceLines = DataService.GetData(fileName);
+            var sourceLines = DataService.GetData(fileNameXLSX);
             if (!sourceLines.Succeeded)
             {
                 return Result<List<InvoiceSource>>.Fail(sourceLines.Messages);
@@ -103,7 +117,7 @@ namespace RUSConvert.UBL
                 string archiveFileNameUBL = Path.Combine(Properties.Settings.Default.InvoicesDestFolder, "ARCHIVES", header.Number + ".xml");
                 if (File.Exists(archiveFileNameUBL))
                 {
-                    //Ignorer, factures déjà en compta, cas des paiements partiels
+                    //Ignorer, facture déjà en compta, cas des paiements partiels
                 }
                 else
                 {
@@ -111,6 +125,8 @@ namespace RUSConvert.UBL
                     count++;
                 }
             };
+            Directory.CreateDirectory(Path.GetDirectoryName(archiveXLSX) ?? "");
+            File.Move(fileNameXLSX, archiveXLSX);
             return Result<List<InvoiceSource>>.Success($"{count} fichiers traités");
         }
     }
