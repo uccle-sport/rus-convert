@@ -119,6 +119,7 @@ namespace RUSConvert.UBL
                             )
                         )
                     );
+                Directory.CreateDirectory(Properties.Settings.Default.InvoicesDestFolder);
                 string fileNameUBL = Path.Combine(Properties.Settings.Default.InvoicesDestFolder, header.Number + ".xml");
                 string archiveFileNameUBL = Path.Combine(Properties.Settings.Default.InvoicesDestFolder, "ARCHIVES", header.Number + ".xml");
                 if (File.Exists(archiveFileNameUBL))
