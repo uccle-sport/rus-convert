@@ -66,7 +66,7 @@ namespace RUSConvert.UBL
                     Amount = decimal.Parse((l.Field<string>("Amount") ?? "0").Replace(",", ".")),
                     TaxLine = decimal.Parse((l.Field<string>("Tax_1") ?? "0").Replace(",", ".")),
                     Total = decimal.Parse((l.Field<string>("Total") ?? "0").Replace(",", ".")),
-                    Ledger_Account = l.Field<string>("Ledger Account"),
+                    Ledger_Account = l.Field<string>("Compte général"),
                     Référence = l.Field<string>("Référence"),
                     VCS = l.Field<string>("VCS"),
                 })];
