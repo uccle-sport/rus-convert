@@ -73,7 +73,19 @@ namespace RUSConvert.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Source")]
+        [global::System.Configuration.DefaultSettingValueAttribute("GEBABEBB")]
+        public string CompanyBIC {
+            get {
+                return ((string)(this["CompanyBIC"]));
+            }
+            set {
+                this["CompanyBIC"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Files")]
         public string InvoicesSourceFolder {
             get {
                 return ((string)(this["InvoicesSourceFolder"]));
@@ -85,7 +97,7 @@ namespace RUSConvert.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Dest")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Files")]
         public string InvoicesDestFolder {
             get {
                 return ((string)(this["InvoicesDestFolder"]));
@@ -97,7 +109,7 @@ namespace RUSConvert.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Source")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Files")]
         public string PaymentsSourceFolder {
             get {
                 return ((string)(this["PaymentsSourceFolder"]));
@@ -109,25 +121,13 @@ namespace RUSConvert.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("R:\\REPO\\Dest")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Files")]
         public string PaymentsDestFolder {
             get {
                 return ((string)(this["PaymentsDestFolder"]));
             }
             set {
                 this["PaymentsDestFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("GEBABEBB")]
-        public string CompanyBIC {
-            get {
-                return ((string)(this["CompanyBIC"]));
-            }
-            set {
-                this["CompanyBIC"] = value;
             }
         }
     }
