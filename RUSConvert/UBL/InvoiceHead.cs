@@ -10,6 +10,6 @@
         public decimal Total_exc;
         public decimal Tax;
         public decimal Total_inc;
-        public string? VCS;
+        public string? Communication_structurée;
     }
 }

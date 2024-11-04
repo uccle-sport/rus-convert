@@ -48,7 +48,7 @@ namespace RUSConvert.UBL
                     Total_exc = h.First().Total_exc,
                     Tax = h.First().Tax,
                     Total_inc = h.First().Total_inc,
-                    VCS = h.First().VCS,
+                    Communication_structurée = h.First().Communication_structurée,
                 };
 
             JobProgress jobProgress = new() { Value = 0, Min = 0, Max = headers.Count(), Text = "Conversion en cours" };
@@ -83,7 +83,7 @@ namespace RUSConvert.UBL
 
                         new XElement(cac + "PaymentMeans",
                             new XElement(cbc + "PaymentDueDate", header.Due_date.ToString("yyyy-MM-dd")),
-                                new XElement(cbc + "InstructionID", CommStructService.Sanitize(header.VCS ?? ""))
+                                new XElement(cbc + "InstructionID", CommStructService.Sanitize(header.Communication_structurée ?? ""))
                             ),
 
                         new XElement(cac + "TaxTotal",
@@ -112,7 +112,7 @@ namespace RUSConvert.UBL
                         where line.Number == header.Number
                         select new XElement(cac + "InvoiceLine",
                                 new XElement(cbc + "LineExtensionAmount", new XAttribute("currencyID", "EUR"), line.Amount),
-                                new XElement(cbc + "AccountingCost", AccountService.GetAccount(rules, line.Ledger_Account, line.Description, line.Total)),
+                                new XElement(cbc + "AccountingCost", AccountService.GetAccount(rules, line.Compte_général, line.Description, line.Total)),
                                 new XElement(cac + "Item",
                                     new XElement(cbc + "Name", line.Description)
                                 )

@@ -61,14 +61,14 @@ namespace RUSConvert.UBL
                     Date_last_payment = l.Field<string>("Date last payment"),
                     ID_last_payment = l.Field<string>("ID last payment"),
                     Amount_credited = decimal.Parse((l.Field<string>("Amount credited") ?? "0").Replace(",", ".")),
+                    Communication_structurée = l.Field<string>("Communication structurée"),
                     Quantity = decimal.Parse((l.Field<string>("Quantity") ?? "0").Replace(",", ".")),
                     Description = l.Field<string>("Description") ?? "",
                     Amount = decimal.Parse((l.Field<string>("Amount") ?? "0").Replace(",", ".")),
                     TaxLine = decimal.Parse((l.Field<string>("Tax_1") ?? "0").Replace(",", ".")),
                     Total = decimal.Parse((l.Field<string>("Total") ?? "0").Replace(",", ".")),
-                    Ledger_Account = l.Field<string>("Compte général"),
+                    Compte_général = l.Field<string>("Compte général"),
                     Référence = l.Field<string>("Référence"),
-                    VCS = l.Field<string>("VCS"),
                 })];
 
                 foreach (var line in sourceLines)
