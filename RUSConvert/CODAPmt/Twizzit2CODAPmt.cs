@@ -6,6 +6,7 @@ namespace RUSConvert.CODAPmt
     internal class Twizzit2CODAPmt(IProgress<JobProgress> progress)
     {
         private readonly IProgress<JobProgress> progress = progress;
+
         public Task<IResult> Convert(string fileName, DateTime date, string communication)
         {
             if (string.IsNullOrEmpty(fileName))

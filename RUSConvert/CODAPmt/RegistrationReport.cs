@@ -7,7 +7,7 @@ namespace RUSConvert.CODAPmt
 {
     internal class RegistrationReport(IProgress<JobProgress> progress)
     {
-        byte[]? LogoRUS;
+        private byte[]? LogoRUS;
         private readonly IProgress<JobProgress> progress = progress;
 
         public void CreateDocuments(List<PaymentSource> sourceLines, string FileName)
@@ -60,13 +60,11 @@ namespace RUSConvert.CODAPmt
                             text.Span("Compte: ").SemiBold();
                             text.Span($"{model.IBAN}");
                         });
-
                     });
 
                     //if (LogoRUS != null) row.ConstantItem(200).Height(100).Image(LogoRUS);
                 });
             }
-
 
             void ComposeComments(IContainer container)
             {
@@ -137,7 +135,6 @@ namespace RUSConvert.CODAPmt
 
             return Document.Create(container =>
             {
-
                 container
                     .Page(page =>
                     {
@@ -156,6 +153,5 @@ namespace RUSConvert.CODAPmt
                     });
             });
         }
-
     }
 }

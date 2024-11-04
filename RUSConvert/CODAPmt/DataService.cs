@@ -4,7 +4,7 @@ using System.Data;
 
 namespace RUSConvert.CODAPmt
 {
-    internal class DataService
+    internal static class DataService
     {
         public static Result<List<PaymentSource>> GetData(string FileName)
         {
@@ -26,8 +26,7 @@ namespace RUSConvert.CODAPmt
                 return Result<List<PaymentSource>>.Fail("Fichier inaccessible, probablement ouvert dans Excel");
             }
 
-            DataTable? lines;
-            lines = result?.Tables["Worksheet"] ?? null;
+            DataTable? lines = result?.Tables["Worksheet"] ?? null;
             if (lines is null)
             {
                 return Result<List<PaymentSource>>.Fail("Fichier vide");

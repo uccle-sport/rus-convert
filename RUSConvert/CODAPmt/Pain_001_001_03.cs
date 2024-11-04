@@ -2,16 +2,14 @@
 
 namespace RUSConvert.CODAPmt
 {
-    internal class Pain_001_001_03
+    internal static class Pain_001_001_03
     {
         public static XDocument GetXML(string envelopRef, string envelopDate, string pmtDate, string communication, IEnumerable<PaymentLine> payments)
         {
-            int count = 0;
-
             // XML
             XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
             XNamespace ns = "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03";
-            var xmlPayments = new XDocument(
+            return new XDocument(
                  new XElement(ns + "Document",
                         new XAttribute(XNamespace.Xmlns + "xsi", xsi.ToString()),
                     new XElement(ns + "CstmrCdtTrfInitn",
@@ -32,11 +30,12 @@ namespace RUSConvert.CODAPmt
                                 )
                             ),
                             new XElement(ns + "PmtInf",
-                                new XElement(ns + "PmtInfId", envelopRef + "/" + count.ToString("000")),
+                                new XElement(ns + "PmtInfId", envelopRef + "/" + payments.Count().ToString("000")),
                                 new XElement(ns + "PmtMtd", "TRF"),
+                                new XElement(ns + "BtchBookg", "true"),
                                 new XElement(ns + "PmtTpInf",
                                     new XElement(ns + "SvcLvl",
-                                        new XElement(ns + "Cd","SEPA")
+                                        new XElement(ns + "Cd", "SEPA")
                                         )
                                     ),
                                 new XElement(ns + "ReqdExctnDt", pmtDate),
@@ -77,7 +76,6 @@ namespace RUSConvert.CODAPmt
                             )
                         )
                     );
-            return xmlPayments;
         }
     }
 }

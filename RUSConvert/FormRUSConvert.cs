@@ -8,6 +8,7 @@ namespace RUSConvert
     public partial class FormRUSConvert : Form
     {
         private readonly FormSettings frmSettings = new();
+
         public FormRUSConvert()
         {
             InitializeComponent();
@@ -88,12 +89,14 @@ namespace RUSConvert
                 notifyIcon.Visible = true;
             }
         }
+
         private void NotifyIcon1_DoubleClick(object sender, EventArgs e)
         {
             Show();
             WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
         }
+
         private void FormRUSConvert_Load(object sender, EventArgs e)
         {
             FormClosing += new FormClosingEventHandler(FormRUSConvert_FormClosing!);
@@ -102,6 +105,7 @@ namespace RUSConvert
             DataBindings.Add(bndLocation);
             Size = frmSettings.FormSize;
         }
+
         private void FormRUSConvert_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmSettings.FormSize = this.Size;
@@ -111,7 +115,7 @@ namespace RUSConvert
     }
 
     //Application settings wrapper class
-    sealed class FormSettings : ApplicationSettingsBase
+    internal sealed class FormSettings : ApplicationSettingsBase
     {
         [UserScopedSetting()]
         [DefaultSettingValue("0, 0")]

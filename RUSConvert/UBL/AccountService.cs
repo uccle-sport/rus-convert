@@ -4,7 +4,7 @@ using System.Data;
 
 namespace RUSConvert.UBL
 {
-    internal class AccountService
+    internal static class AccountService
     {
         internal class AccountRules
         {
@@ -23,14 +23,17 @@ namespace RUSConvert.UBL
             {
                 foreach (var rule in rules)
                 {
-                    if ((description.Contains(rule.Description))
+                    if (description.Contains(rule.Description)
                         && ((total > rule.AmountMin) || rule.AmountMin == 0)
                         && ((total < rule.AmountMax) || rule.AmountMin == 0))
+                    {
                         return rule.Account;
+                    }
                 }
             }
             return "700000";
         }
+
         public static Result<List<AccountRules>> GetRules()
         {
             if (!File.Exists("Files/Rules.xlsx")) return Result<List<AccountRules>>.Success([]);
@@ -56,8 +59,7 @@ namespace RUSConvert.UBL
             {
                 return Result<List<AccountRules>>.Fail("Fichier inaccessible");
             }
-            DataTable? lines;
-            lines = result?.Tables["Sheet1"] ?? null;
+            DataTable? lines = result?.Tables["Sheet1"] ?? null;
             if (lines is null)
             {
                 return Result<List<AccountRules>>.Fail("Fichier vide");

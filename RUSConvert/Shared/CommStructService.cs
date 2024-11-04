@@ -1,6 +1,6 @@
 ﻿namespace RUSConvert.Shared
 {
-    internal class CommStructService
+    internal static class CommStructService
     {
         public static string Sanitize(string communication)
         {

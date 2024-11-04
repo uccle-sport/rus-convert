@@ -13,7 +13,7 @@ namespace RUSConvert.UBL
         {
             if (string.IsNullOrEmpty(fileNameXLSX))
             {
-                return Result.FailAsync($"ATTENTION: veuillez choisir un fichier, conversion impossible");
+                return Result.FailAsync("ATTENTION: veuillez choisir un fichier, conversion impossible");
             }
             if (!File.Exists(fileNameXLSX))
             {
@@ -27,7 +27,7 @@ namespace RUSConvert.UBL
 
             var rulesResult = GetRules();
             if (!rulesResult.Succeeded) return Result.FailAsync("ATTENTION: fichier Rules inaccessible, conversion impossible");
-            List<AccountRules> rules = rulesResult.Data; 
+            List<AccountRules> rules = rulesResult.Data;
 
             var sourceLines = DataService.GetData(fileNameXLSX);
             if (!sourceLines.Succeeded)
@@ -134,7 +134,7 @@ namespace RUSConvert.UBL
                 }
                 jobProgress.Value++;
                 progress.Report(jobProgress);
-            };
+            }
             Directory.CreateDirectory(Path.GetDirectoryName(archiveXLSX) ?? "");
             File.Move(fileNameXLSX, archiveXLSX);
             return Result.SuccessAsync($"{countOK} fichiers traités, {countIgnore} fichiers ignorés");

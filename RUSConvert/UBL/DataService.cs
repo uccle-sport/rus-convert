@@ -30,8 +30,7 @@ namespace RUSConvert.UBL
                 return Result<List<InvoiceSource>>.Fail("Fichier inaccessible");
             }
 
-            DataTable? lines;
-            lines = result?.Tables["Sheet1"] ?? null;
+            DataTable? lines = result?.Tables["Sheet1"] ?? null;
             if (lines is null)
             {
                 return Result<List<InvoiceSource>>.Fail("Fichier vide");
@@ -80,6 +79,5 @@ namespace RUSConvert.UBL
                 return Result<List<InvoiceSource>>.Success(sourceLines);
             }
         }
-       
     }
 }
