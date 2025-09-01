@@ -32,7 +32,7 @@ namespace RUSConvert.CODAPmt
                             new XElement(ns + "PmtInf",
                                 new XElement(ns + "PmtInfId", envelopRef + "/" + payments.Count().ToString("000")),
                                 new XElement(ns + "PmtMtd", "TRF"),
-                                new XElement(ns + "BtchBookg", "true"),
+                                new XElement(ns + "BtchBookg", "false"),
                                 new XElement(ns + "PmtTpInf",
                                     new XElement(ns + "SvcLvl",
                                         new XElement(ns + "Cd", "SEPA")
