@@ -36,7 +36,7 @@ namespace RUSConvert.CODAPmt
                 {
                     TwizzitId = h.First().TwizzitId,
                     Name = h.First().Name ?? "",
-                    IBAN = h.First().IBAN ?? "",
+                    IBAN = h.First().IBAN!.ToUpper().Replace(" ", string.Empty) ?? "",
                     Amount = h.Sum(l => l.Amount),
                 };
 
