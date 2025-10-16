@@ -56,7 +56,7 @@ namespace RUSConvert.CODAPmt
 
             // UBL
             var ubl = new RegistrationUBL(progress);
-            ubl.CreateDocuments(date, communication, payments);
+            ubl.CreateDocuments(date, pmtDate, communication, payments);
 
             return Result.SuccessAsync($"{payments.Count()} fichiers traités");
         }

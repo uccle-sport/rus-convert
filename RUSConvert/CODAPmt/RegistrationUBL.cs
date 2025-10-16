@@ -8,17 +8,22 @@ namespace RUSConvert.CODAPmt
         private readonly byte[]? LogoRUS;
         private readonly IProgress<JobProgress> progress = progress;
 
-        public void CreateDocuments(DateTime envelopDate, string communication, IEnumerable<PaymentLine> payments)
+        public void CreateDocuments(DateTime envelopDate, string pmtDate, string communication, IEnumerable<PaymentLine> payments)
         {
             JobProgress jobProgress = new() { Value = 0, Min = 0, Max = payments.Count(), Text = "Conversion en cours" };
 
             int countOK = 0;
+
             XNamespace xNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
             XNamespace cac = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";
             XNamespace cbc = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2";
 
             foreach (var header in payments)
             {
+                var pdfFileName = Path.Combine(Properties.Settings.Default.PaymentsDestFolder, header.Name + " PRESTATIONS " + pmtDate + ".pdf");
+                var pdfFileBytes = File.ReadAllBytes(pdfFileName);
+                var pdfFile64 = Convert.ToBase64String(pdfFileBytes);
+
                 XDocument xmlInvoice = new(
                     new XElement(xNamespace + "Invoice",
                             new XAttribute("xmlns", xNamespace.NamespaceName),
@@ -40,13 +45,13 @@ namespace RUSConvert.CODAPmt
                         ),
                         new XElement(cac + "AdditionalDocumentReference",
                             new XElement(cbc + "ID", "UBL.BE"),
-                            new XElement(cbc + "DocumentDescription", "UBL.BE Compatible software Version 5.21")
+                            new XElement(cbc + "DocumentDescription", "UBL.BE Compatible software Version 5.21"),
+                            new XElement(cac + "Attachment",
+                                new XElement(cbc + "EmbeddedDocumentBinaryObject",
+                                    new XAttribute("filename", Path.GetFileName(pdfFileName)),
+                                    new XAttribute("mimeCode", "application/pdf"), pdfFile64)
+                            )
                         ),
-                        /*new XElement(cac + "AdditionalDocumentReference",
-
-                            new XElement(cbc + "ID", header.Number),
-                            new XElement(cbc + "DocumentDescription", "CommercialInvoice")
-                        ),*/
 
                         new XElement(cac + "AccountingSupplierParty",
                             new XElement(cac + "Party",
