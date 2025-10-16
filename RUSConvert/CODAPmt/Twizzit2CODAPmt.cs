@@ -44,7 +44,7 @@ namespace RUSConvert.CODAPmt
             string pmtDate = date.AddDays(0).ToString("yyyy-MM-dd");
             string envelopRef = "UCCL/" + envelopDate;
 
-            // XML
+            // XML Bank
             var xmlPayments = Pain_001_001_03.GetXML(envelopRef, envelopDate, pmtDate, communication, payments);
             Directory.CreateDirectory(Properties.Settings.Default.PaymentsDestFolder);
             string fileNameCODA = Path.Combine(Properties.Settings.Default.PaymentsDestFolder, Path.GetFileNameWithoutExtension(fileName) + ".xml");
@@ -53,6 +53,10 @@ namespace RUSConvert.CODAPmt
             // PDF
             var document = new RegistrationReport(progress);
             document.CreateDocuments(sourceLines.Data, pmtDate);
+
+            // UBL
+            var ubl = new RegistrationUBL(progress);
+            ubl.CreateDocuments(date, communication, payments);
 
             return Result.SuccessAsync($"{payments.Count()} fichiers traités");
         }
