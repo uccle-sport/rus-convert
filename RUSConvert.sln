@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RUSConvert", "RUSConvert\RUSConvert.csproj", "{62BFBE08-8640-4D9A-9921-0E6D93F3BE5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RUSConvert", "RUSConvert.csproj", "{62BFBE08-8640-4D9A-9921-0E6D93F3BE5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
