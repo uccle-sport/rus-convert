@@ -121,7 +121,7 @@ namespace RUSConvert.UBL
 
                         new XElement(cac + "PaymentMeans",
                             new XElement(cbc + "PaymentMeansCode", "58"),
-                            new XElement(cbc + "PaymentID", CommStructService.Sanitize(header.Communication_structurée ?? "")),
+                            new XElement(cbc + "PaymentID", header.Communication_structurée),
                             new XElement(cac + "PayeeFinancialAccount",
                                 new XElement(cbc + "ID", Properties.Settings.Default.CompanyIBAN)
                                 )
