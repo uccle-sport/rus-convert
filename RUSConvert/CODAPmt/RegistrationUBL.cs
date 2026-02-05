@@ -5,7 +5,6 @@ namespace RUSConvert.CODAPmt
 {
     internal class RegistrationUBL(IProgress<JobProgress> progress)
     {
-        private readonly byte[]? LogoRUS;
         private readonly IProgress<JobProgress> progress = progress;
 
         public void CreateDocuments(DateTime envelopDate, string pmtDate, string communication, IEnumerable<PaymentLine> payments)
