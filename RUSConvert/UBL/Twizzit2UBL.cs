@@ -9,7 +9,7 @@ namespace RUSConvert.UBL
     {
         private readonly IProgress<JobProgress> progress = progress;
 
-        public Task<IResult> Convert(string fileNameXLSX)
+        public Task<IResult> Convert(string fileNameXLSX, DateOnly invoicesDate)
         {
             if (string.IsNullOrEmpty(fileNameXLSX))
             {
@@ -43,7 +43,7 @@ namespace RUSConvert.UBL
                     Number = h.First().Number ?? "",
                     Recipient_Id = h.First().Recipient_Id?.ToUpper() ?? "",
                     Recipient = h.First().Recipient?.ToUpper() ?? "",
-                    Creation_date = h.First().Creation_date,
+                    Creation_date = invoicesDate,
                     Due_date = h.First().Due_date,
                     Total_exc = h.First().Total_exc,
                     Tax = h.First().Tax,

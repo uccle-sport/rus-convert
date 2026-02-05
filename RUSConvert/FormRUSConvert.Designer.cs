@@ -48,6 +48,7 @@
             labelPayments = new Label();
             ButtonLoadPayments = new Button();
             ButtonConvertPayments = new Button();
+            DateTimeInvoices = new DateTimePicker();
             tabControl.SuspendLayout();
             tabPageUBL.SuspendLayout();
             tabPageCODA.SuspendLayout();
@@ -79,6 +80,7 @@
             // 
             // tabPageUBL
             // 
+            tabPageUBL.Controls.Add(DateTimeInvoices);
             tabPageUBL.Controls.Add(progressBarUBL);
             tabPageUBL.Controls.Add(labelStatusInvoices);
             tabPageUBL.Controls.Add(labelInvoices);
@@ -220,6 +222,14 @@
             ButtonConvertPayments.UseVisualStyleBackColor = true;
             ButtonConvertPayments.Click += ButtonConvertPayments_Click;
             // 
+            // DateTimeInvoices
+            // 
+            DateTimeInvoices.Format = DateTimePickerFormat.Short;
+            DateTimeInvoices.Location = new Point(12, 47);
+            DateTimeInvoices.Name = "DateTimeInvoices";
+            DateTimeInvoices.Size = new Size(97, 23);
+            DateTimeInvoices.TabIndex = 57;
+            // 
             // FormRUSConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -256,5 +266,6 @@
         private DateTimePicker DateTimeEnvelop;
         private ProgressBar progressBarCODA;
         private ProgressBar progressBarUBL;
+        private DateTimePicker DateTimeInvoices;
     }
 }

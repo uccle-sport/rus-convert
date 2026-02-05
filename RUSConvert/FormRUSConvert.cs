@@ -59,7 +59,7 @@ namespace RUSConvert
                 labelStatusInvoices.Text = message.Text;
             };
             var job = new Twizzit2UBL(progress);
-            var result = await Task.Run(() => job.Convert(labelInvoices.Text));
+            var result = await Task.Run(() => job.Convert(labelInvoices.Text, DateOnly.FromDateTime(DateTimeInvoices.Value.Date)));
             labelStatusInvoices.Text = result.Messages[0] ?? "";
         }
 
